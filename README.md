@@ -1,4 +1,4 @@
-# 03 JavaScript: Password Generator
+<!-- # 03 JavaScript: Password Generator
 
 Create an application that generates a random password based on user-selected criteria. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
 
@@ -45,4 +45,13 @@ You are required to submit the following for review:
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
 - - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved. -->
+
+# Frank Buono Homework 3: Random Password Generator
+
+## Technologies Used: HTML5, CSS, JavaScript
+
+This assignment asks the user how long they want their password to be and what kind of characters they want in it (upper and lower case letters, numbers, and special characters). Then it uses the built in random function to generate a password of the desired length and contents.
+
+* link to deployed application: https://fbuonojr.github.io/homework_3/
+* link to GitHub repository: https://github.com/fbuonojr/homework_3

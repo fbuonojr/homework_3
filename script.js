@@ -50,10 +50,12 @@ function confirmChars(){
   specialCharsBool = confirm("Do you want special characters?");
 }
 
-var beginGenerator = confirm("Would you like to generate a random password?");
-if(beginGenerator){
-  confirmChars();
-}
+confirmChars();
+
+// var beginGenerator = confirm("Would you like to generate a random password?");
+// if(beginGenerator){
+//   confirmChars();
+// }
 // ***********
 // MAIN LOGIC
 // ***********
