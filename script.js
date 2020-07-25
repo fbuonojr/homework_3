@@ -9,17 +9,17 @@ var pwGeneratorBtn = document.querySelector("#generate");
 // DATA
 // ***********
 ​
-// change the all varialbe names, comments, etc.
+// these variables contain the strings of all characters that can be used
 var stringLower = "abcdefghijklmnopqrstuvwxyz";
 var stringUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var stringSpecialChars = "$#@!~^&*()_+[]{}"; // might need more 
+var stringSpecialChars = "$#@!~^&*()_+[]{}%':;?<>=-.,"; // added some other special characters (%':;?<>=-.,) 
 var stringNumbers = "0123456789";
 ​
 // you could change varialbes into hard coded arrays such as ['a', 'b', ... ]
-var arrayLower = "abcdefghijklmnopqrstuvwxyz".split("");
-var arrayUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-var arraySpecialChars = "$#@!~^&*()_+[]{}".split(""); // could need modification
-var arrayNumbers = "0123456789".split("");
+var arrayLower = stringLower.split("");
+var arrayUpper = stringUpper.split("");
+var arraySpecialChars = stringSpecialChars.split(""); // could need modification
+var arrayNumbers = stringNumbers.split("");
 ​
 // variables for store user's input
 var numberBool = false;
@@ -28,8 +28,8 @@ var lowerBool = false;
 var specialCharsBool = false;
 var userPWLength = 0;
 ​
-var minLen = 8;
-var _password = "";
+var shortestPW = 8;
+var initialPW = "";
 ​
 // log to see the data
 console.log(arrayLower);
@@ -42,7 +42,7 @@ console.log(arrayNumbers);
 // **************************
 ​
 userPWLength = prompt("Enter the length of your password");
-while (userPWLength < minLen) {
+while (userPWLength < shortestPW) {
   alert("Length of password has to be greater than 6");
   userPWLength = prompt("Enter the length of your password");
 } 
@@ -65,31 +65,31 @@ specialCharsBool = confirm("Do you want special characters?");
 // to meet user's requiremence
 if (numberBool) {
   var index = Math.floor(Math.random() * arrayNumbers.length);
-  _password += arrayNumbers[index];
+  initialPW += arrayNumbers[index];
 }
-console.log(_password);
+console.log(initialPW);
 ​
 if (upperBool) {
   var index = Math.floor(Math.random() * arrayUpper.length);
-  _password += arrayUpper[index];
+  initialPW += arrayUpper[index];
 }
-console.log(_password);
+console.log(initialPW);
 ​
 if (lowerBool) {
   var index = Math.floor(Math.random() * arrayLower.length);
-  _password += arrayLower[index];
+  initialPW += arrayLower[index];
 }
-console.log(_password);
+console.log(initialPW);
 ​
 if (specialCharsBool) {
   var index = Math.floor(Math.random() * arraySpecialChars.length);
-  _password += arraySpecialChars[index];
+  initialPW += arraySpecialChars[index];
 }
-console.log(_password);
+console.log(initialPW);
 ​
 // Function: 
 function generatePassword() {
-  var remaining = userPWLength - _password.length;
+  var remaining = userPWLength - initialPW.length;
   var allChosenStr = "";
 ​
   // you could call confirm function here
@@ -111,23 +111,23 @@ function generatePassword() {
 ​
   for (var i = 0; i < remaining; i++) {
     var index = Math.floor(Math.random() * allChosenStr.length);
-    _password += allChosenStr[index]; // append to the existing password
+    initialPW += allChosenStr[index]; // append to the existing password
   }
-  console.log('Password before randomized order', _password);
+  console.log('Password before randomized order', initialPW);
 ​
   // Randomize the order of chars in the password - can be skipped or add your own code
-  var pwdArr = _password.split("");
+  var pwdArr = initialPW.split("");
   var randomOrdered = [];
   randomOrdered.push(pwdArr[pwdArr.length - 1]);
   randomOrdered.push(pwdArr[pwdArr.length - 2]);
   for (var i = 0; i < (pwdArr.length - 2); i++) {
     randomOrdered.push(pwdArr[i]);
   };
-  _password = randomOrdered.join("");
+  initialPW = randomOrdered.join("");
 ​
 ​
-  console.log("Final password", _password);
-  return _password;
+  console.log("Final password", initialPW);
+  return initialPW;
 }
 ​
 // Write password to the #password input
