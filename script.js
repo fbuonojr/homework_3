@@ -50,13 +50,7 @@ function confirmChars(){
   specialCharsBool = confirm("Do you want special characters?");
 }
 
-//function to ask user if they want to generate a password
-// var beginGenerator = confirm("Would you like to generate a random password?");
-// if(beginGenerator){
-//   confirmChars();
-// }
-
-//function that takes the characters and length the user wants and adds random characters from selected categories (i.e. numbers, special characters, etc) and adds them to password string
+//this function takes the characters and length the user wants and adds random characters from selected categories (i.e. numbers, special characters, etc) and adds them to password string
 function addConfirmedChars(){
   if (numberBool) {
     var index = Math.floor(Math.random() * arrayNumbers.length);
@@ -82,9 +76,6 @@ function addConfirmedChars(){
   }
   console.log(initialPW);
 }
-
-//call to function that confirms what characters and how long user wants 
-confirmChars();
 
 // Function: 
 function generatePassword() {
@@ -132,6 +123,8 @@ function generatePassword() {
 // Write password to the #password input
 function writePassword() {
   // could call your functions here below
+  confirmChars();
+  addConfirmedChars();
 
 
   var password = generatePassword();
