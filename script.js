@@ -1,22 +1,5 @@
-// !!! starter code before Joe slacked out other code !!!
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+var pwGeneratorBtn = document.querySelector("#generate");
 ​
 // 1. Change variable names to your own
 // 2. Change the groups of code into functions and call/execute them at the right places
@@ -27,47 +10,47 @@ var generateBtn = document.querySelector("#generate");
 // ***********
 ​
 // change the all varialbe names, comments, etc.
-var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
-var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var specialChars = "$#@!~^&*()_+[]{}"; // might need more 
-var numberStr = "0123456789";
+var stringLower = "abcdefghijklmnopqrstuvwxyz";
+var stringUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var stringSpecialChars = "$#@!~^&*()_+[]{}"; // might need more 
+var stringNumbers = "0123456789";
 ​
 // you could change varialbes into hard coded arrays such as ['a', 'b', ... ]
-var lowerCaseArr = "abcdefghijklmnopqrstuvwxyz".split("");
-var uppderCaseArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-var specialArr = "$#@!~^&*()_+[]{}".split(""); // could need modification
-var numberArr = "0123456789".split("");
+var arrayLower = "abcdefghijklmnopqrstuvwxyz".split("");
+var arrayUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var arraySpecialChars = "$#@!~^&*()_+[]{}".split(""); // could need modification
+var arrayNumbers = "0123456789".split("");
 ​
 // variables for store user's input
-var confirmNumbers = false;
-var confirmUpper = false;
-var confirmLower = false;
-var confirmSpecial = false;
-var lenPwdChosen = 0;
+var numberBool = false;
+var upperBool = false;
+var lowerBool = false;
+var specialCharsBool = false;
+var userPWLength = 0;
 ​
 var minLen = 8;
 var _password = "";
 ​
 // log to see the data
-console.log(lowerCaseArr);
-console.log(uppderCaseArr);
-console.log(specialArr);
-console.log(numberArr);
+console.log(arrayLower);
+console.log(arrayUpper);
+console.log(arraySpecialChars);
+console.log(arrayNumbers);
 ​
 // **************************
 // USER INPUT - function ()?
 // **************************
 ​
-lenPwdChosen = prompt("Enter the length of your password");
-while (lenPwdChosen < minLen) {
+userPWLength = prompt("Enter the length of your password");
+while (userPWLength < minLen) {
   alert("Length of password has to be greater than 6");
-  lenPwdChosen = prompt("Enter the length of your password");
+  userPWLength = prompt("Enter the length of your password");
 } 
 ​
-confirmNumbers = confirm("Do you want numbers in your password?");
-confirmUpper = confirm("Do you want uppercase letters?");
-confirmLower = confirm("Do you want lowercase letters?");
-confirmSpecial = confirm("Do you want special characters?");
+numberBool = confirm("Do you want numbers in your password?");
+upperBool = confirm("Do you want uppercase letters?");
+lowerBool = confirm("Do you want lowercase letters?");
+specialCharsBool = confirm("Do you want special characters?");
 ​
 // ***********
 // MAIN LOGIC
@@ -80,49 +63,49 @@ confirmSpecial = confirm("Do you want special characters?");
 ​
 // Include in password at least one letter with the user's choices of numbers, special chars, uppercase and/or lowercase chars
 // to meet user's requiremence
-if (confirmNumbers) {
-  var index = Math.floor(Math.random() * numberArr.length);
-  _password += numberArr[index];
+if (numberBool) {
+  var index = Math.floor(Math.random() * arrayNumbers.length);
+  _password += arrayNumbers[index];
 }
 console.log(_password);
 ​
-if (confirmUpper) {
-  var index = Math.floor(Math.random() * uppderCaseArr.length);
-  _password += uppderCaseArr[index];
+if (upperBool) {
+  var index = Math.floor(Math.random() * arrayUpper.length);
+  _password += arrayUpper[index];
 }
 console.log(_password);
 ​
-if (confirmLower) {
-  var index = Math.floor(Math.random() * lowerCaseArr.length);
-  _password += lowerCaseArr[index];
+if (lowerBool) {
+  var index = Math.floor(Math.random() * arrayLower.length);
+  _password += arrayLower[index];
 }
 console.log(_password);
 ​
-if (confirmSpecial) {
-  var index = Math.floor(Math.random() * specialArr.length);
-  _password += specialArr[index];
+if (specialCharsBool) {
+  var index = Math.floor(Math.random() * arraySpecialChars.length);
+  _password += arraySpecialChars[index];
 }
 console.log(_password);
 ​
 // Function: 
 function generatePassword() {
-  var remaining = lenPwdChosen - _password.length;
+  var remaining = userPWLength - _password.length;
   var allChosenStr = "";
 ​
   // you could call confirm function here
 ​
   // after implementing the required chars, create a string candidates of strings for random selections
-  if (confirmNumbers) {
-    allChosenStr += numberStr;
+  if (numberBool) {
+    allChosenStr += stringNumbers;
   }
-  if (confirmUpper) {
-    allChosenStr += upperCaseChars;
+  if (upperBool) {
+    allChosenStr += stringUpper;
   }
-  if (confirmLower) {
-    allChosenStr += lowerCaseChars;
+  if (lowerBool) {
+    allChosenStr += stringLower;
   }
-  if (confirmSpecial) {
-    allChosenStr += specialChars;
+  if (specialCharsBool) {
+    allChosenStr += stringSpecialChars;
   }
   console.log(allChosenStr);
 ​
@@ -160,4 +143,4 @@ function writePassword() {
 }
 ​
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+pwGeneratorBtn.addEventListener("click", writePassword);
