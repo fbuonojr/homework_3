@@ -1,3 +1,4 @@
+// !!! starter code before Joe slacked out other code !!!
 // // Assignment Code
 // var generateBtn = document.querySelector("#generate");
 
@@ -12,6 +13,7 @@
 
 // // Add event listener to generate button
 // generateBtn.addEventListener("click", writePassword);
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
