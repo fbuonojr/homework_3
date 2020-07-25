@@ -24,7 +24,7 @@ var lowerBool = false;
 var specialCharsBool = false;
 
 // variable to store how long the user wants their password to be
-var userPWLength = 0;
+var initialPWLength = 0;
 
 //variable for minimum password length and inital password string
 var shortestPW = 8;
@@ -38,10 +38,10 @@ console.log(arrayNumbers);
 
 //this function confirms what kinds of characters user wants in their password 
 function confirmChars(){
-  userPWLength = prompt("Enter the length of your password");
-  while (userPWLength < shortestPW) {
+  initialPWLength = prompt("Enter the length of your password");
+  while (initialPWLength < shortestPW) {
     alert("Length of password has to be greater than 6");
-    userPWLength = prompt("Enter the length of your password");
+    initialPWLength = prompt("Enter the length of your password");
   } 
 
   numberBool = confirm("Do you want numbers in your password?");
@@ -50,50 +50,45 @@ function confirmChars(){
   specialCharsBool = confirm("Do you want special characters?");
 }
 
-confirmChars();
-
+//function to ask user if they want to generate a password
 // var beginGenerator = confirm("Would you like to generate a random password?");
 // if(beginGenerator){
 //   confirmChars();
 // }
-// ***********
-// MAIN LOGIC
-// ***********
 
-// you can make the following code into function () and call it at the appropriate place
-// function() ? and/or 
-// another function to handle random index and to add the char to an array 
-// with the array passed as input argument
+//function that takes the characters and length the user wants and adds random characters from selected categories (i.e. numbers, special characters, etc) and adds them to password string
+function addConfirmedChars(){
+  if (numberBool) {
+    var index = Math.floor(Math.random() * arrayNumbers.length);
+    initialPW += arrayNumbers[index];
+  }
+  console.log(initialPW);
 
-// Include in password at least one letter with the user's choices of numbers, special chars, uppercase and/or lowercase chars
-// to meet user's requiremence
-if (numberBool) {
-  var index = Math.floor(Math.random() * arrayNumbers.length);
-  initialPW += arrayNumbers[index];
+  if (upperBool) {
+    var index = Math.floor(Math.random() * arrayUpper.length);
+    initialPW += arrayUpper[index];
+  }
+  console.log(initialPW);
+
+  if (lowerBool) {
+    var index = Math.floor(Math.random() * arrayLower.length);
+    initialPW += arrayLower[index];
+  }
+  console.log(initialPW);
+
+  if (specialCharsBool) {
+    var index = Math.floor(Math.random() * arraySpecialChars.length);
+    initialPW += arraySpecialChars[index];
+  }
+  console.log(initialPW);
 }
-console.log(initialPW);
 
-if (upperBool) {
-  var index = Math.floor(Math.random() * arrayUpper.length);
-  initialPW += arrayUpper[index];
-}
-console.log(initialPW);
-
-if (lowerBool) {
-  var index = Math.floor(Math.random() * arrayLower.length);
-  initialPW += arrayLower[index];
-}
-console.log(initialPW);
-
-if (specialCharsBool) {
-  var index = Math.floor(Math.random() * arraySpecialChars.length);
-  initialPW += arraySpecialChars[index];
-}
-console.log(initialPW);
+//call to function that confirms what characters and how long user wants 
+confirmChars();
 
 // Function: 
 function generatePassword() {
-  var remaining = userPWLength - initialPW.length;
+  var remaining = initialPWLength - initialPW.length;
   var allChosenStr = "";
 
   // you could call confirm function here
