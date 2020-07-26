@@ -17,16 +17,16 @@ var arrayUpper = stringUpper.split("");
 var arraySpecialChars = stringSpecialChars.split(""); // could need modification
 var arrayNumbers = stringNumbers.split("");
 
-// variables to help keep track of what user wants in their password
+// variables to help keep track of what user wants in their finalPassword
 var numberBool = false;
 var upperBool = false;
 var lowerBool = false;
 var specialCharsBool = false;
 
-// variable to store how long the user wants their password to be
+// variable to store how long the user wants their finalPassword to be
 var initialPWLength = 0;
 
-//variable for minimum password length and inital password string
+//variable for minimum finalPassword length and inital finalPassword string
 var shortestPW = 8;
 var initialPW = "";
 
@@ -36,101 +36,101 @@ console.log(arrayUpper);
 console.log(arraySpecialChars);
 console.log(arrayNumbers);
 
-//this function confirms what kinds of characters user wants in their password 
+//this function confirms what kinds of characters user wants in their finalPassword 
 function confirmChars(){
-  initialPWLength = prompt("Enter the length of your password");
+  initialPWLength = prompt("Enter the length of your finalPassword");
   while (initialPWLength < shortestPW) {
-    alert("Length of password has to be greater than 6");
-    initialPWLength = prompt("Enter the length of your password");
+    alert("Length of finalPassword has to be greater than 6");
+    initialPWLength = prompt("Enter the length of your finalPassword");
   } 
 
-  numberBool = confirm("Do you want numbers in your password?");
+  numberBool = confirm("Do you want numbers in your finalPassword?");
   upperBool = confirm("Do you want uppercase letters?");
   lowerBool = confirm("Do you want lowercase letters?");
   specialCharsBool = confirm("Do you want special characters?");
 }
 
-//this function takes the characters and length the user wants and adds random characters from selected categories (i.e. numbers, special characters, etc) and adds them to password string
+//this function takes the characters and length the user wants and adds random characters from selected categories (i.e. numbers, special characters, etc) and adds them to finalPassword string
 function addConfirmedChars(){
   if (numberBool) {
-    var index = Math.floor(Math.random() * arrayNumbers.length);
-    initialPW += arrayNumbers[index];
+    var numberIndex = Math.floor(Math.random() * arrayNumbers.length);
+    initialPW += arrayNumbers[numberIndex];
   }
   console.log(initialPW);
 
   if (upperBool) {
-    var index = Math.floor(Math.random() * arrayUpper.length);
-    initialPW += arrayUpper[index];
+    var upperIndex = Math.floor(Math.random() * arrayUpper.length);
+    initialPW += arrayUpper[upperIndex];
   }
   console.log(initialPW);
 
   if (lowerBool) {
-    var index = Math.floor(Math.random() * arrayLower.length);
-    initialPW += arrayLower[index];
+    var lowerIndex = Math.floor(Math.random() * arrayLower.length);
+    initialPW += arrayLower[lowerIndex];
   }
   console.log(initialPW);
 
   if (specialCharsBool) {
-    var index = Math.floor(Math.random() * arraySpecialChars.length);
-    initialPW += arraySpecialChars[index];
+    var specialCharsIndex = Math.floor(Math.random() * arraySpecialChars.length);
+    initialPW += arraySpecialChars[specialCharsIndex];
   }
   console.log(initialPW);
 }
 
-// Function: 
+//this function takes the portion of the finalPassword that has already been created, finishes it to make it the required length, then randomizes the order of the characters
 function generatePassword() {
-  var remaining = initialPWLength - initialPW.length;
-  var allChosenStr = "";
+  var charactersRemaining = initialPWLength - initialPW.length;
+  var allConfirmedCharacters = "";
 
   // you could call confirm function here
 
   // after implementing the required chars, create a string candidates of strings for random selections
   if (numberBool) {
-    allChosenStr += stringNumbers;
+    allConfirmedCharacters += stringNumbers;
   }
   if (upperBool) {
-    allChosenStr += stringUpper;
+    allConfirmedCharacters += stringUpper;
   }
   if (lowerBool) {
-    allChosenStr += stringLower;
+    allConfirmedCharacters += stringLower;
   }
   if (specialCharsBool) {
-    allChosenStr += stringSpecialChars;
+    allConfirmedCharacters += stringSpecialChars;
   }
-  console.log(allChosenStr);
+  console.log(allConfirmedCharacters);
 
-  for (var i = 0; i < remaining; i++) {
-    var index = Math.floor(Math.random() * allChosenStr.length);
-    initialPW += allChosenStr[index]; // append to the existing password
+  for (var i = 0; i < charactersRemaining; i++) {
+    var randomCharsSelectorIndex = Math.floor(Math.random() * allConfirmedCharacters.length);
+    initialPW += allConfirmedCharacters[randomCharsSelectorIndex]; // append to the existing finalPassword
   }
   console.log('Password before randomized order', initialPW);
 
-  // Randomize the order of chars in the password - can be skipped or add your own code
-  var pwdArr = initialPW.split("");
-  var randomOrdered = [];
-  randomOrdered.push(pwdArr[pwdArr.length - 1]);
-  randomOrdered.push(pwdArr[pwdArr.length - 2]);
-  for (var i = 0; i < (pwdArr.length - 2); i++) {
-    randomOrdered.push(pwdArr[i]);
+  // Randomize the order of chars in the finalPassword - can be skipped or add your own code
+  var passwordArray = initialPW.split("");
+  var randomizeArray = [];
+  randomizeArray.push(passwordArray[passwordArray.length - 1]);
+  randomizeArray.push(passwordArray[passwordArray.length - 2]);
+  for (var i = 0; i < (passwordArray.length - 2); i++) {
+    randomizeArray.push(passwordArray[i]);
   };
-  initialPW = randomOrdered.join("");
+  initialPW = randomizeArray.join("");
 
 
-  console.log("Final password", initialPW);
+  console.log("Final finalPassword", initialPW);
   return initialPW;
 }
 
-// Write password to the #password input
+// Write finalPassword to the #finalPassword input
 function writePassword() {
   // could call your functions here below
   confirmChars();
   addConfirmedChars();
 
 
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var finalPassword = generatePassword();
+  var finalPasswordText = document.querySelector("#finalPassword");
 
-  passwordText.value = password;
+  finalPasswordText.value = finalPassword;
 
 }
 
